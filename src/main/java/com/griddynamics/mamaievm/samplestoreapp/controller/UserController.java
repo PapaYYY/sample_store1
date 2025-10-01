@@ -60,6 +60,7 @@ public class UserController {
     @PostMapping("/update")
     @ResponseStatus(HttpStatus.OK)
     UserDto updateUser(@RequestBody @NonNull @Valid UserDto userDTO, @AuthenticationPrincipal UserDetails userDetails) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = userDetails.getUsername();
         log.debug("Updating user {}", currentUserName);
         if (!currentUserName.equals(userDTO.getEmail())) throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Please provide proper user email");
