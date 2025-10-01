@@ -1,4 +1,4 @@
-package com.griddynamics.mamaievm.samplestoreapp.utils;
+package com.griddynamics.mamaievm.samplestoreapp.config;
 
 import com.griddynamics.mamaievm.samplestoreapp.controller.UserController;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +27,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, SecurityContextRepository securityContextRepository) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests((authorize) -> authorize.requestMatchers(UserController.BASE_URL + "/login")
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers(UserController.BASE_URL + "/login", "/h2-console/")
                         .permitAll()
                         .anyRequest()
                         .authenticated()
