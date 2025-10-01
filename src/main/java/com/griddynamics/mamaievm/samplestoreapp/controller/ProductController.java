@@ -28,12 +28,12 @@ public class ProductController {
 
     @GetMapping()
     List<ProductDto> getAllProducts(){
-        return productService.findAllProducts();
+        return productService.findAll();
     }
 
     @GetMapping("/{id}")
-    ProductDto getAllProducts(@PathVariable Long id){
-        return productService.findProductById(id);
+    ProductDto getProductById(@PathVariable Long id){
+        return productService.findById(id);
     }
     
     @PostMapping("/new")
@@ -42,7 +42,7 @@ public class ProductController {
         if(product.getId() != null) {
             throw new IllegalArgumentException("Please remove product id from create product request body");
         }
-        return productService.saveProduct(product);
+        return productService.save(product);
     }
 
     @PostMapping("/update")
@@ -51,6 +51,6 @@ public class ProductController {
         if(product.getId() == null) {
             throw new IllegalArgumentException("Product id is required for product update");
         }
-        return productService.saveProduct(product);
+        return productService.save(product);
     }
 }

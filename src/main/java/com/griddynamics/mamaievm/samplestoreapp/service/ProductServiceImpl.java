@@ -4,6 +4,7 @@ import com.griddynamics.mamaievm.samplestoreapp.dto.ProductDto;
 import com.griddynamics.mamaievm.samplestoreapp.entity.Product;
 import com.griddynamics.mamaievm.samplestoreapp.mapper.ProductMapper;
 import com.griddynamics.mamaievm.samplestoreapp.repository.ProductRepository;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,13 +14,15 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
+@Primary // if we want to make this bean primary and use this bean over the others that implements the interface
 public class ProductServiceImpl implements ProductService {
     
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
 
     @Override
-    public ProductDto saveProduct(ProductDto productDto) {
+    public ProductDto save(ProductDto productDto) {
+        if (productDto == null) throw new RuntimeException("ProductDto cannot be null");
         if(productDto.getId() == null) {
             Product product = productMapper.toEntity(productDto);
             return productMapper.toDto(productRepository.save(product));
@@ -31,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDto> findAllProducts() {
+    public List<ProductDto> findAll() {
         return productRepository.findAll()
                 .stream()
                 .map(productMapper::toDto)
@@ -39,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto findProductById(Long productId) {
+    public ProductDto findById(Long productId) {
         Product product = productRepository.findById(productId).orElseThrow();
         return productMapper.toDto(product);
     }
