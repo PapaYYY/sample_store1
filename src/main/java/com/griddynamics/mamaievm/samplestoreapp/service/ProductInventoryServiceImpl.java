@@ -4,6 +4,7 @@ import com.griddynamics.mamaievm.samplestoreapp.domain.Cart;
 import com.griddynamics.mamaievm.samplestoreapp.domain.CartProduct;
 import com.griddynamics.mamaievm.samplestoreapp.entity.ProductInventory;
 import com.griddynamics.mamaievm.samplestoreapp.repository.ProductInventoryRepository;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@Profile({"sql", "default", "test-data"}) // to specify the profiles for which this bean is injected
 @RequiredArgsConstructor
 public class ProductInventoryServiceImpl implements ProductInventoryService {
     
