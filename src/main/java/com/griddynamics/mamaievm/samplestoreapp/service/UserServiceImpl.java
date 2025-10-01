@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     public UserDto saveUser(UserDto userDTO) {
         if(userDTO.getId() == null) {
             User user = userMapper.toEntity(userDTO);
-            if(userRepository.existsByEmail(user.getEmail())) throw new IllegalArgumentException("User with id " + user.getId() + " already exists");
+            if(userRepository.existsByEmail(user.getEmail())) throw new IllegalArgumentException("User with email " + user.getEmail() + " already exists");
             return userMapper.toDto(userRepository.save(user));
         } else {
             User user = userRepository.findById(userDTO.getId()).orElseThrow();
