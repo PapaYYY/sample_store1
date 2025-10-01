@@ -42,5 +42,11 @@
                                  constraintName="FK_PRODUCT_INVENTORY_ON_ID" referencedColumnNames="id"
                                  referencedTableName="product"/>
     </changeSet>
+    <include file="db/changelog/2025/04/21-01-changelog.xml"/>
+    <include file="db/changelog/2025/04/22-01-changelog.xml"/>
+    <include file="db/changelog/2025/04/22-02-changelog.xml"/>
+    <include file="db/changelog/2025/06/04-01-changelog.xml"/>
+    <include file="db/changelog/2025/10/01-01-changelog.xml"/>
+    <include file="db/changelog/2025/10/01-02-changelog.xml"/>
 
 </databaseChangeLog>
