@@ -2,6 +2,7 @@ package com.griddynamics.mamaievm.samplestoreapp.controller;
 
 import com.griddynamics.mamaievm.samplestoreapp.domain.CartProduct;
 import com.griddynamics.mamaievm.samplestoreapp.domain.CartSummaryDto;
+import com.griddynamics.mamaievm.samplestoreapp.domain.OrderDto;
 import com.griddynamics.mamaievm.samplestoreapp.dto.CartDto;
 import com.griddynamics.mamaievm.samplestoreapp.service.CartService;
 import com.griddynamics.mamaievm.samplestoreapp.service.ProductInventoryService;
@@ -67,7 +68,7 @@ public class CartController {
 
     @GetMapping("/checkout")
     @ResponseStatus(HttpStatus.OK)
-    CartSummaryDto checkout() {
+    OrderDto checkout() {
         try {
             if (productInventoryService.checkInventory()) {
                 return cartService.checkout();
